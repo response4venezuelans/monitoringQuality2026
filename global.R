@@ -1,5 +1,8 @@
 library(shiny)
 library(activityinfo)
+
+# Allow file uploads up to 50MB on Posit Connect (default is too restrictive and returns 403)
+options(shiny.maxRequestSize = 50 * 1024^2)
 library(httr2)
 library(dplyr)
 library(bslib)
