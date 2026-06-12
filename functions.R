@@ -121,10 +121,11 @@ is_valid_cva <- function(cva_column, cva_value, cva_type) {
     "Cash Collection Over the Counter (OTC)", "Direct Cash (Cash in Hand)",
     "Cardless ATM Withdrawal", "Voucher", "Other"
   )
-  if_else(
-    cva_column == "Yes",
-    if_else(cva_value <= 0 | !cva_type %in% valid_cva_types, 1L, 0L),
-    0L
+  cva_value_num <- suppressWarnings(as.numeric(cva_value))
+  case_when(
+    is.na(cva_column) | cva_column != "Yes"                                        ~ 0L,
+    is.na(cva_value_num) | cva_value_num <= 0 | !cva_type %in% valid_cva_types     ~ 1L,
+    .default = 0L
   )
 }
 

@@ -74,8 +74,14 @@ server <- function(input, output, session) {
   
   # Render DataTable safely
   output$dataTable <- renderDT({
-    datatable(fetchedData())
-  })
+    data <- fetchedData()
+    tryCatch(
+      datatable(data, options = list(scrollX = TRUE, pageLength = 15)),
+      error = function(e) {
+        datatable(data.frame(Error = conditionMessage(e)))
+      }
+    )
+  }, server = FALSE)
   
   output$downloadDataAI <- downloadHandler(
     filename = function() {
@@ -174,9 +180,15 @@ server <- function(input, output, session) {
   
   # Render the preview of the uploaded Excel file or the processed data
   output$previewXlsTable <- renderDT({
-    req(fetchedDataExcel())  # Ensure data is available
-    datatable(fetchedDataExcel(), options = list(pageLength = 5))
-  })
+    req(fetchedDataExcel())
+    data <- fetchedDataExcel()
+    tryCatch(
+      datatable(data, options = list(pageLength = 5, scrollX = TRUE)),
+      error = function(e) {
+        datatable(data.frame(Error = conditionMessage(e)))
+      }
+    )
+  }, server = FALSE)
   
   observeEvent(input$analizeDataFromExcelFile, {
     # Perform QA analysis on the uploaded data
