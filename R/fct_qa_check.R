@@ -34,11 +34,9 @@ qa_check <- function(data) {
         .default = 0L
       )
     ) |>
-    rowwise() |>
     mutate(
-      tmp_youth_sum = sum(c_across(all_of(qa_youth_columns)), na.rm = TRUE)
+      tmp_youth_sum = rowSums(across(all_of(qa_youth_columns)), na.rm = TRUE)
     ) |>
-    ungroup() |>
     mutate(
       # Cross-check: ActivityInfo's AGD breakdown sum and population-type
       # breakdown sum should always agree with each other for Direct
@@ -77,7 +75,5 @@ qa_check <- function(data) {
       QA_admin     = check_admin_validity(Country.Country, Country.Admin1, countryListDF),
       QA_indicator = check_indicator_validity(Indicator.Sector, Indicator.Indicator, indicatorDF)
     ) |>
-    rowwise() |>
-    mutate(QA_sum = as.integer(sum(c_across(starts_with("QA_")), na.rm = TRUE) > 0)) |>
-    ungroup()
+    mutate(QA_sum = as.integer(rowSums(across(starts_with("QA_")), na.rm = TRUE) > 0))
 }

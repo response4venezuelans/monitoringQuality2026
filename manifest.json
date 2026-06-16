@@ -2179,10 +2179,10 @@
       "checksum": "e9948da7a6b6e5b20af835be9e30cc99"
     },
     "R/fct_excel_template.R": {
-      "checksum": "fafcc969a4daf3688b7df32f1e457b51"
+      "checksum": "44d7cd678b22ffcc9dadbe74f56d07ad"
     },
     "R/fct_qa_check.R": {
-      "checksum": "a1c639c40f1d34df969505504e1e8f9b"
+      "checksum": "f016445dbb10de7c37ac01471c598492"
     },
     "R/fct_qa_validators.R": {
       "checksum": "79253d091281fbbdf0aca13d8e4df4f6"

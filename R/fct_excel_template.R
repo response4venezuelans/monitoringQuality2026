@@ -45,10 +45,8 @@ addCountryISOCodes <- function(df, countryDF) {
 # totals qa_check() expects, using the same column groups ActivityInfo sums.
 add_calculated_sums <- function(df) {
   df |>
-    rowwise() |>
     mutate(
-      AGD.Sum.Calculated     = sum(c_across(all_of(qa_agd_columns)),        na.rm = TRUE),
-      PopType.Sum.Calculated = sum(c_across(all_of(qa_population_columns)), na.rm = TRUE)
-    ) |>
-    ungroup()
+      AGD.Sum.Calculated     = rowSums(across(all_of(qa_agd_columns)),        na.rm = TRUE),
+      PopType.Sum.Calculated = rowSums(across(all_of(qa_population_columns)), na.rm = TRUE)
+    )
 }
