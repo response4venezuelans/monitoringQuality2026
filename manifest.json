@@ -728,43 +728,6 @@
         "RemoteSha": "1.8.1"
       }
     },
-    "gridlayout": {
-      "Source": "github",
-      "Repository": null,
-      "description": {
-        "Package": "gridlayout",
-        "Type": "Package",
-        "Title": "Build Layouts for R-Webapps Using CSS-Grid",
-        "Version": "0.2.1",
-        "Authors@R": "c(person(\"Nick\", \"Strayer\", role = c(\"aut\", \"cre\"), email = \"nick.strayer@rstudio.com\"))",
-        "Description": "Makes it easy to layout your Shiny app or other R-derived HTML documents using CSS grid.",
-        "License": "MIT + file LICENSE",
-        "Encoding": "UTF-8",
-        "Suggests": "testthat (>= 3.0.0), shiny, bslib, crayon, knitr, rmarkdown,\nfontawesome, here, rstudioapi, fs, glue, ggplot2, gt,\nshinytest2",
-        "Config/testthat/edition": "3",
-        "RoxygenNote": "7.2.3",
-        "Roxygen": "list(markdown = TRUE)",
-        "VignetteBuilder": "knitr",
-        "Imports": "magrittr, htmltools, rlang, lifecycle",
-        "Config/Needs/website": "rstudio/quillt",
-        "Depends": "R (>= 2.10)",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteRepo": "gridlayout",
-        "RemoteUsername": "rstudio",
-        "RemoteRef": "HEAD",
-        "RemoteSha": "dc7d8912ae27e5393561dcc2b9bd637f3653ca09",
-        "GithubRepo": "gridlayout",
-        "GithubUsername": "rstudio",
-        "GithubRef": "HEAD",
-        "GithubSHA1": "dc7d8912ae27e5393561dcc2b9bd637f3653ca09",
-        "NeedsCompilation": "no",
-        "Packaged": "2025-12-19 19:12:45 UTC; MATHEUS",
-        "Author": "Nick Strayer [aut, cre]",
-        "Maintainer": "Nick Strayer <nick.strayer@rstudio.com>",
-        "Built": "R 4.5.2; ; 2025-12-19 19:12:46 UTC; windows"
-      }
-    },
     "highr": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -1494,45 +1457,6 @@
         "RemoteSha": "1.5.0"
       }
     },
-    "purrr": {
-      "Source": "CRAN",
-      "Repository": "https://cloud.r-project.org",
-      "description": {
-        "Package": "purrr",
-        "Title": "Functional Programming Tools",
-        "Version": "1.2.2",
-        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Lionel\", \"Henry\", , \"lionel@posit.co\", role = \"aut\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"),\n           comment = c(ROR = \"https://ror.org/03wc8by49\"))\n  )",
-        "Description": "A complete and consistent functional programming toolkit for\n    R.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://purrr.tidyverse.org/, https://github.com/tidyverse/purrr",
-        "BugReports": "https://github.com/tidyverse/purrr/issues",
-        "Depends": "R (>= 4.1)",
-        "Imports": "cli (>= 3.6.1), lifecycle (>= 1.0.3), magrittr (>= 1.5.0),\nrlang (>= 1.1.1), vctrs (>= 0.6.3)",
-        "Suggests": "carrier (>= 0.3.0), covr, dplyr (>= 0.7.8), httr, knitr,\nlubridate, mirai (>= 2.5.1), rmarkdown, testthat (>= 3.0.0),\ntibble, tidyselect",
-        "LinkingTo": "cli",
-        "VignetteBuilder": "knitr",
-        "Biarch": "true",
-        "Config/build/compilation-database": "true",
-        "Config/Needs/website": "tidyverse/tidytemplate, tidyr",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "TRUE",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.3.3",
-        "NeedsCompilation": "yes",
-        "Packaged": "2026-04-10 10:15:54 UTC; lionel",
-        "Author": "Hadley Wickham [aut, cre] (ORCID:\n    <https://orcid.org/0000-0003-4757-117X>),\n  Lionel Henry [aut],\n  Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
-        "Maintainer": "Hadley Wickham <hadley@posit.co>",
-        "Repository": "CRAN",
-        "Date/Publication": "2026-04-10 17:00:09 UTC",
-        "Built": "R 4.5.3; x86_64-w64-mingw32; 2026-04-11 03:35:22 UTC; windows",
-        "Archs": "x64",
-        "RemoteType": "standard",
-        "RemotePkgRef": "purrr",
-        "RemoteRef": "purrr",
-        "RemoteRepos": "https://cran.rstudio.com",
-        "RemoteSha": "1.2.2"
-      }
-    },
     "rappdirs": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -1972,7 +1896,7 @@
         "Package": "tinytex",
         "Type": "Package",
         "Title": "Helper Functions to Install and Maintain TeX Live, and Compile\nLaTeX Documents",
-        "Version": "0.59",
+        "Version": "0.60",
         "Authors@R": "c(\n  person(\"Yihui\", \"Xie\", role = c(\"aut\", \"cre\", \"cph\"), email = \"xie@yihui.name\", comment = c(ORCID = \"0000-0003-0645-5666\")),\n  person(given = \"Posit Software, PBC\", role = c(\"cph\", \"fnd\")),\n  person(\"Christophe\", \"Dervieux\", role = \"ctb\", comment = c(ORCID = \"0000-0003-4474-2498\")),\n  person(\"Devon\", \"Ryan\", role = \"ctb\", email = \"dpryan79@gmail.com\", comment = c(ORCID = \"0000-0002-8549-0971\")),\n  person(\"Ethan\", \"Heinzen\", role = \"ctb\"),\n  person(\"Fernando\", \"Cagua\", role = \"ctb\"),\n  person()\n  )",
         "Description": "Helper functions to install and maintain the 'LaTeX' distribution\n  named 'TinyTeX' (<https://yihui.org/tinytex/>), a lightweight, cross-platform,\n  portable, and easy-to-maintain version of 'TeX Live'. This package also\n  contains helper functions to compile 'LaTeX' documents, and install missing\n  'LaTeX' packages automatically.",
         "Imports": "xfun (>= 0.48)",
@@ -1983,17 +1907,17 @@
         "Encoding": "UTF-8",
         "RoxygenNote": "7.3.3",
         "NeedsCompilation": "no",
-        "Packaged": "2026-03-27 22:21:20 UTC; yihui",
+        "Packaged": "2026-06-15 22:44:20 UTC; yihui",
         "Author": "Yihui Xie [aut, cre, cph] (ORCID:\n    <https://orcid.org/0000-0003-0645-5666>),\n  Posit Software, PBC [cph, fnd],\n  Christophe Dervieux [ctb] (ORCID:\n    <https://orcid.org/0000-0003-4474-2498>),\n  Devon Ryan [ctb] (ORCID: <https://orcid.org/0000-0002-8549-0971>),\n  Ethan Heinzen [ctb],\n  Fernando Cagua [ctb]",
         "Maintainer": "Yihui Xie <xie@yihui.name>",
         "Repository": "CRAN",
-        "Date/Publication": "2026-03-28 06:10:10 UTC",
-        "Built": "R 4.5.3; ; 2026-03-28 17:57:23 UTC; windows",
+        "Date/Publication": "2026-06-16 05:10:02 UTC",
+        "Built": "R 4.5.3; ; 2026-06-16 13:36:10 UTC; windows",
         "RemoteType": "standard",
         "RemotePkgRef": "tinytex",
         "RemoteRef": "tinytex",
         "RemoteRepos": "https://cran.rstudio.com",
-        "RemoteSha": "0.59"
+        "RemoteSha.Version": "0.60"
       }
     },
     "utf8": {
@@ -2248,26 +2172,35 @@
     }
   },
   "files": {
-    "app.R": {
-      "checksum": "469f36ba5352e272ce948071853febc1"
-    },
-    "functions.R": {
-      "checksum": "46ce71ad03db73b5c025ce0a26ba37b3"
-    },
     "global.R": {
-      "checksum": "c8a0e55ada47885f5223a3b3016d0f2b"
+      "checksum": "e11e29efe164c634b90319c2cc425e9e"
     },
-    "R/QAFromAIDB.R": {
-      "checksum": "bdedc2706bacf001ddf39d58ab1fade3"
+    "R/fct_activityinfo.R": {
+      "checksum": "1aeaa5f49c76668dadb21b4b4125d88b"
+    },
+    "R/fct_excel_template.R": {
+      "checksum": "9909565ad0e6adcaab57dc738b357759"
+    },
+    "R/fct_qa_check.R": {
+      "checksum": "b50ef358f877b0f7766c3bda85d56c89"
+    },
+    "R/fct_qa_validators.R": {
+      "checksum": "10f93db529818981c6b6a47a583da339"
+    },
+    "R/utils_metrics.R": {
+      "checksum": "b9a2c618f31bf6e5bd6511925157373a"
+    },
+    "R/utils_ui.R": {
+      "checksum": "20bad2f0183d608e0c8d06d9b9bb1f46"
     },
     "README.md": {
       "checksum": "082f1084543ad78baf52dbc36dd36781"
     },
     "server.R": {
-      "checksum": "b9ed0d9723bd71e0f7e3084950fac7bc"
+      "checksum": "226f1dad3be3e4da9f583392dc42ff6e"
     },
     "ui.R": {
-      "checksum": "6f1d718b2b58b3e93d58d40184f816b2"
+      "checksum": "7e5dc96136d900257145db23423b77e2"
     },
     "www/img/logo.ico": {
       "checksum": "a7180cd8b2d9abebba6d9c77eff4bb54"
