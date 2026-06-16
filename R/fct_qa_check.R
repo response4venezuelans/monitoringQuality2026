@@ -53,15 +53,20 @@ qa_check <- function(data) {
           PopType.Sum.Calculated != AGD.Sum.Calculated ~ 1L,
         .default = 0L
       ),
+      # Zero new beneficiaries this month is valid on its own (everyone was
+      # already supported in a previous month), so only flag when there ARE
+      # new beneficiaries but none of them are recorded as under-18.
       QA_Education = case_when(
         Indicator.Indicator.Type == "Direct Assistance" &
           str_detect(Indicator.Sector, fixed("Education")) &
+          New.beneficiaries.of.the.month > 0 &
           tmp_youth_sum == 0 ~ 1L,
         .default = 0L
       ),
       QA_ChildProtection = case_when(
         Indicator.Indicator.Type == "Direct Assistance" &
           str_detect(Indicator.Sector, fixed("Child Protection")) &
+          New.beneficiaries.of.the.month > 0 &
           tmp_youth_sum == 0 ~ 1L,
         .default = 0L
       )
