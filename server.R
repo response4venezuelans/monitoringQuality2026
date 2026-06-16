@@ -1,13 +1,3 @@
-library(shiny)
-library(activityinfo)
-library(bslib)
-library(gridlayout)
-library(DT)
-library(waiter)
-library(readxl)
-library(writexl)
-library(purrr)
-
 server <- function(input, output, session) {
   metrics_db <- reactiveValues(
     total_activities = 0,
@@ -42,7 +32,7 @@ server <- function(input, output, session) {
 
     # Ensure the fetched data is a valid data frame
     if (is.null(monitoring5WData) || nrow(monitoring5WData) == 0) {
-      fetchedData(data.frame(Message = "No data available", stringsAsFactors = FALSE))
+      fetchedData(tibble(Message = "No data available"))
     } else {
       fetchedData(monitoring5WData)
       updateActionButton(session, "checkDataFromActivityInfoDB", disabled = FALSE)
@@ -65,7 +55,7 @@ server <- function(input, output, session) {
       updateActionButton(session, "downloadDataAI", disabled = FALSE)
     }, error = function(e) {
       showNotification(
-        paste("QA check error:", conditionMessage(e)),
+        str_glue("QA check error: {conditionMessage(e)}"),
         type = "error",
         duration = 15
       )
@@ -78,7 +68,7 @@ server <- function(input, output, session) {
     tryCatch(
       datatable(data, options = list(scrollX = TRUE, pageLength = 15)),
       error = function(e) {
-        datatable(data.frame(Error = conditionMessage(e)))
+        datatable(tibble(Error = conditionMessage(e)))
       }
     )
   }, server = FALSE)
@@ -185,7 +175,7 @@ server <- function(input, output, session) {
     tryCatch(
       datatable(data, options = list(pageLength = 5, scrollX = TRUE)),
       error = function(e) {
-        datatable(data.frame(Error = conditionMessage(e)))
+        datatable(tibble(Error = conditionMessage(e)))
       }
     )
   }, server = FALSE)

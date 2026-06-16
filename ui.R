@@ -1,12 +1,3 @@
-library(shiny)
-library(activityinfo)
-library(bslib)
-library(gridlayout)
-library(DT)
-library(waiter)
-library(readxl)
-library(writexl)
-library(purrr)
 ui <- page_navbar(
   title = "Quality Control of R4V Monitoring Data - ActivityInfo 5W 2026",
   selected = "About",
@@ -115,7 +106,7 @@ ui <- page_navbar(
         upload the corrected file back into the Activity Info Database."
         ),
         tags$a(
-          href = "template_5w_2026.xlsx",
+          href = "template_5w_2025.xlsx",
           target = "_blank",
           download = NA,
           "Download Excel Template"

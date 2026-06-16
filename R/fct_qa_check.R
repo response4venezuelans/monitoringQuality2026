@@ -12,10 +12,16 @@ qa_check <- function(data) {
       ),
       QA_NewBeneficiariesMonth = is_valid_new_beneficiaries_of_month(
         Indicator.Indicator.Type, New.beneficiaries.of.the.month
-      ),
-      tmp_pop_sum   = rowSums(across(all_of(pop_cols)),   na.rm = TRUE),
-      tmp_agd_sum   = rowSums(across(all_of(agd_cols)),   na.rm = TRUE),
-      tmp_youth_sum = rowSums(across(all_of(youth_cols)), na.rm = TRUE),
+      )
+    ) |>
+    rowwise() |>
+    mutate(
+      tmp_pop_sum   = sum(c_across(all_of(pop_cols)),   na.rm = TRUE),
+      tmp_agd_sum   = sum(c_across(all_of(agd_cols)),   na.rm = TRUE),
+      tmp_youth_sum = sum(c_across(all_of(youth_cols)), na.rm = TRUE)
+    ) |>
+    ungroup() |>
+    mutate(
       QA_check_population_disaggregation = case_when(
         Indicator.Indicator.Type == "Direct Assistance" &
           tmp_pop_sum != New.beneficiaries.of.the.month ~ 1L,
@@ -43,7 +49,9 @@ qa_check <- function(data) {
     mutate(
       QA_valid_cva = is_valid_cva(CVA, Value..in.USD., Delivery.mechanism),
       QA_admin     = check_admin_validity(Country.Country, Country.Admin1, countryListDF),
-      QA_indicator = check_indicator_validity(Indicator.Sector, Indicator.Indicator, indicatorDF),
-      QA_sum       = as.integer(rowSums(across(starts_with("QA_")), na.rm = TRUE) > 0)
-    )
+      QA_indicator = check_indicator_validity(Indicator.Sector, Indicator.Indicator, indicatorDF)
+    ) |>
+    rowwise() |>
+    mutate(QA_sum = as.integer(sum(c_across(starts_with("QA_")), na.rm = TRUE) > 0)) |>
+    ungroup()
 }
