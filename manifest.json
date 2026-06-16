@@ -2176,16 +2176,16 @@
       "checksum": "e11e29efe164c634b90319c2cc425e9e"
     },
     "R/fct_activityinfo.R": {
-      "checksum": "a8d91afba85902460dddadafb2a4c9db"
+      "checksum": "7436767f9e2f8aaf2ee3fbf21024c35a"
     },
     "R/fct_excel_template.R": {
       "checksum": "fafcc969a4daf3688b7df32f1e457b51"
     },
     "R/fct_qa_check.R": {
-      "checksum": "9299d92a97a3a62e7a2aa50c0497bb5b"
+      "checksum": "e2b6651c352571c1fd8630d16f83af63"
     },
     "R/fct_qa_validators.R": {
-      "checksum": "10f93db529818981c6b6a47a583da339"
+      "checksum": "79253d091281fbbdf0aca13d8e4df4f6"
     },
     "R/utils_metrics.R": {
       "checksum": "b9a2c618f31bf6e5bd6511925157373a"

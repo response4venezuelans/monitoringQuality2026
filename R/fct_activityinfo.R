@@ -47,7 +47,6 @@ getDataFromAI <- function(typeOfRequest, filterRequest) {
                 "appealing_org", "implementing_org", "country")),
       -starts_with("calc_")
     ) |>
-    mutate(New.beneficiaries.of.the.month = Total.monthly.beneficiaries) |>
     left_join(indicators_2026_types, by = "indicator_ref") |>
     rename(Indicator.Indicator.Type = indicator_type) |>
     select(-indicator_ref)

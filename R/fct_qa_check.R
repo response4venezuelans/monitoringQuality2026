@@ -9,12 +9,29 @@ qa_youth_columns <- c("Women.under.18", "Men.under.18", "Other.under.18")
 qa_check <- function(data) {
   data |>
     mutate(
+      # New beneficiaries of the month is no longer separately reported: it's
+      # only trustworthy when ActivityInfo's own AGD and population-type
+      # breakdown sums agree with each other (Direct Assistance only).
+      New.beneficiaries.of.the.month = case_when(
+        Indicator.Indicator.Type == "Direct Assistance" &
+          !is.na(PopType.Sum.Calculated) & !is.na(AGD.Sum.Calculated) &
+          PopType.Sum.Calculated == AGD.Sum.Calculated ~ PopType.Sum.Calculated,
+        .default = NA_real_
+      )
+    ) |>
+    mutate(
       QA_output = is_valid_output(Indicator.Indicator.Type, Quantity.of.output),
       QA_TotalMonthlyBeneficiaries = is_valid_total_beneficiaries_of_month(
         Indicator.Indicator.Type, Total.monthly.beneficiaries
       ),
       QA_NewBeneficiariesMonth = is_valid_new_beneficiaries_of_month(
         Indicator.Indicator.Type, New.beneficiaries.of.the.month
+      ),
+      QA_NewBeneficiariesExceedsTotal = case_when(
+        Indicator.Indicator.Type == "Direct Assistance" &
+          !is.na(New.beneficiaries.of.the.month) &
+          New.beneficiaries.of.the.month > Total.monthly.beneficiaries ~ 1L,
+        .default = 0L
       )
     ) |>
     rowwise() |>
@@ -23,14 +40,17 @@ qa_check <- function(data) {
     ) |>
     ungroup() |>
     mutate(
+      # Cross-check: ActivityInfo's AGD breakdown sum and population-type
+      # breakdown sum should always agree with each other for Direct
+      # Assistance records; both flags surface the same mismatch.
       QA_check_population_disaggregation = case_when(
         Indicator.Indicator.Type == "Direct Assistance" &
-          PopType.Sum.Calculated != New.beneficiaries.of.the.month ~ 1L,
+          PopType.Sum.Calculated != AGD.Sum.Calculated ~ 1L,
         .default = 0L
       ),
       QA_check_AGD = case_when(
         Indicator.Indicator.Type == "Direct Assistance" &
-          AGD.Sum.Calculated != New.beneficiaries.of.the.month ~ 1L,
+          PopType.Sum.Calculated != AGD.Sum.Calculated ~ 1L,
         .default = 0L
       ),
       QA_Education = case_when(

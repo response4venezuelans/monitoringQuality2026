@@ -19,9 +19,9 @@ is_valid_total_beneficiaries_of_month <- function(indicator_type, total_monthly_
 # Returns 1 if new beneficiaries is invalid for the given indicator type
 is_valid_new_beneficiaries_of_month <- function(indicator_type, new_beneficiaries_of_month) {
   if_else(
-    (indicator_type %in% c("Direct Assistance", "Capacity Building") &
+    (indicator_type == "Direct Assistance" &
       (is.na(new_beneficiaries_of_month) | new_beneficiaries_of_month < 0)) |
-      (!indicator_type %in% c("Direct Assistance", "Capacity Building") &
+      (indicator_type != "Direct Assistance" &
         !is.na(new_beneficiaries_of_month)),
     1L, 0L
   )
