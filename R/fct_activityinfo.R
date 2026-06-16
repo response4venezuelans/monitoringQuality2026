@@ -37,6 +37,8 @@ getDataFromAI <- function(typeOfRequest, filterRequest) {
       Men.above.18                         = new_men_above18,
       Other.under.18                       = new_other_under18,
       Other.above.18                       = new_other_above18,
+      AGD.Sum.Calculated                   = calc_new_agd,
+      PopType.Sum.Calculated               = calc_new_pop_type,
       Platform                             = platform,
       indicator_ref                        = indicator
     ) |>

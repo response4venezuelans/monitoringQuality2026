@@ -198,6 +198,7 @@ server <- function(input, output, session) {
     data <- add_platform_column(data)
     data <- addIndicatorType(data, indicatorDF)
     data <- addCountryISOCodes(data, countryListDF)
+    data <- add_calculated_sums(data)
     checked_data <- qa_check(data)
     # Update the reactive value with the processed data
     fetchedDataExcel(checked_data)

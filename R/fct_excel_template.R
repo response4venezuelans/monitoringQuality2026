@@ -39,3 +39,16 @@ addCountryISOCodes <- function(df, countryDF) {
     left_join(countryDF, by = c("Country.Country" = "Country", "Country.Admin1" = "Admin1")) |>
     rename(Country.countryISO = countryISO, Country.Admin1ISOCode = Admin1ISOCode)
 }
+
+# Excel uploads don't carry ActivityInfo's calc_new_agd/calc_new_pop_type
+# fields, so recompute the same AGD.Sum.Calculated/PopType.Sum.Calculated
+# totals qa_check() expects, using the same column groups ActivityInfo sums.
+add_calculated_sums <- function(df) {
+  df |>
+    rowwise() |>
+    mutate(
+      AGD.Sum.Calculated     = sum(c_across(all_of(qa_agd_columns)),        na.rm = TRUE),
+      PopType.Sum.Calculated = sum(c_across(all_of(qa_population_columns)), na.rm = TRUE)
+    ) |>
+    ungroup()
+}

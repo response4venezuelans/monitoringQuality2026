@@ -2176,13 +2176,13 @@
       "checksum": "e11e29efe164c634b90319c2cc425e9e"
     },
     "R/fct_activityinfo.R": {
-      "checksum": "1aeaa5f49c76668dadb21b4b4125d88b"
+      "checksum": "a8d91afba85902460dddadafb2a4c9db"
     },
     "R/fct_excel_template.R": {
-      "checksum": "9909565ad0e6adcaab57dc738b357759"
+      "checksum": "fafcc969a4daf3688b7df32f1e457b51"
     },
     "R/fct_qa_check.R": {
-      "checksum": "b50ef358f877b0f7766c3bda85d56c89"
+      "checksum": "9299d92a97a3a62e7a2aa50c0497bb5b"
     },
     "R/fct_qa_validators.R": {
       "checksum": "10f93db529818981c6b6a47a583da339"
@@ -2197,7 +2197,7 @@
       "checksum": "082f1084543ad78baf52dbc36dd36781"
     },
     "server.R": {
-      "checksum": "226f1dad3be3e4da9f583392dc42ff6e"
+      "checksum": "c43c85fab8f8d99edc5e608cb14d3a0f"
     },
     "ui.R": {
       "checksum": "7e5dc96136d900257145db23423b77e2"

@@ -1,9 +1,12 @@
-qa_check <- function(data) {
-  pop_cols   <- c("Refugees.and.Migrants.IN.DESTINATION", "Refugees.and.Migrants.IN.TRANSIT",
-                  "Host.Communities.Beneficiaries", "Refugees.and.Migrants.PENDULARS", "Colombian.Returnees")
-  agd_cols   <- c("Women.under.18", "Men.under.18", "Women.above.18", "Men.above.18", "Other.under.18", "Other.above.18")
-  youth_cols <- c("Women.under.18", "Men.under.18", "Other.under.18")
+# Breakdown columns that ActivityInfo itself sums into AGD.Sum.Calculated /
+# PopType.Sum.Calculated (kept here so fct_excel_template.R can recompute the
+# same totals for uploaded files, which don't carry ActivityInfo's calc columns)
+qa_population_columns <- c("Refugees.and.Migrants.IN.DESTINATION", "Refugees.and.Migrants.IN.TRANSIT",
+                            "Host.Communities.Beneficiaries", "Refugees.and.Migrants.PENDULARS", "Colombian.Returnees")
+qa_agd_columns   <- c("Women.under.18", "Men.under.18", "Women.above.18", "Men.above.18", "Other.under.18", "Other.above.18")
+qa_youth_columns <- c("Women.under.18", "Men.under.18", "Other.under.18")
 
+qa_check <- function(data) {
   data |>
     mutate(
       QA_output = is_valid_output(Indicator.Indicator.Type, Quantity.of.output),
@@ -16,20 +19,18 @@ qa_check <- function(data) {
     ) |>
     rowwise() |>
     mutate(
-      tmp_pop_sum   = sum(c_across(all_of(pop_cols)),   na.rm = TRUE),
-      tmp_agd_sum   = sum(c_across(all_of(agd_cols)),   na.rm = TRUE),
-      tmp_youth_sum = sum(c_across(all_of(youth_cols)), na.rm = TRUE)
+      tmp_youth_sum = sum(c_across(all_of(qa_youth_columns)), na.rm = TRUE)
     ) |>
     ungroup() |>
     mutate(
       QA_check_population_disaggregation = case_when(
         Indicator.Indicator.Type == "Direct Assistance" &
-          tmp_pop_sum != New.beneficiaries.of.the.month ~ 1L,
+          PopType.Sum.Calculated != New.beneficiaries.of.the.month ~ 1L,
         .default = 0L
       ),
       QA_check_AGD = case_when(
         Indicator.Indicator.Type == "Direct Assistance" &
-          tmp_agd_sum != New.beneficiaries.of.the.month ~ 1L,
+          AGD.Sum.Calculated != New.beneficiaries.of.the.month ~ 1L,
         .default = 0L
       ),
       QA_Education = case_when(
@@ -45,7 +46,7 @@ qa_check <- function(data) {
         .default = 0L
       )
     ) |>
-    select(-tmp_pop_sum, -tmp_agd_sum, -tmp_youth_sum) |>
+    select(-tmp_youth_sum) |>
     mutate(
       QA_valid_cva = is_valid_cva(CVA, Value..in.USD., Delivery.mechanism),
       QA_admin     = check_admin_validity(Country.Country, Country.Admin1, countryListDF),
