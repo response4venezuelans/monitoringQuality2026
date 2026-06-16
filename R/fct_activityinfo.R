@@ -1,6 +1,9 @@
-fetch_ai_form <- function(form_id) {
+# A timeout keeps a slow/unresponsive ActivityInfo API from hanging the
+# caller indefinitely (e.g. blocking app startup in global.R).
+fetch_ai_form <- function(form_id, timeout_seconds = 30) {
   request(str_glue("https://www.activityinfo.org/resources/query/v43/form/{form_id}")) |>
     req_auth_bearer_token(Sys.getenv("ACTIVITYINFOTOKEN")) |>
+    req_timeout(timeout_seconds) |>
     req_perform() |>
     resp_body_json(simplifyVector = TRUE, flatten = TRUE) |>
     as_tibble()

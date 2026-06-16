@@ -2173,10 +2173,10 @@
   },
   "files": {
     "global.R": {
-      "checksum": "e11e29efe164c634b90319c2cc425e9e"
+      "checksum": "817e2e8d88658c3a853473bac7b1e069"
     },
     "R/fct_activityinfo.R": {
-      "checksum": "7436767f9e2f8aaf2ee3fbf21024c35a"
+      "checksum": "e9948da7a6b6e5b20af835be9e30cc99"
     },
     "R/fct_excel_template.R": {
       "checksum": "fafcc969a4daf3688b7df32f1e457b51"

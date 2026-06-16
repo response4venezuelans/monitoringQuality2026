@@ -14,6 +14,14 @@ options(shiny.maxRequestSize = 50 * 1024^2)
 
 activityInfoToken(Sys.getenv("ACTIVITYINFOTOKEN"), prompt = FALSE)
 
+# queryTable() (used below) calls the activityinfo package's internal httr
+# GET/POST helpers, which expose no timeout parameter of their own. A process-
+# wide httr timeout ensures a slow/unresponsive ActivityInfo API aborts the
+# underlying curl transfer instead of hanging app startup indefinitely (Posit
+# Connect kills the whole worker if startup doesn't finish within its own
+# init timeout, which is what caused a previous 504 Gateway Time-out).
+httr::set_config(httr::timeout(30))
+
 # Needed immediately below to fetch startup reference data; everything else in
 # R/ is auto-sourced by Shiny after global.R runs, so it doesn't need this.
 source("R/fct_activityinfo.R")
@@ -24,11 +32,18 @@ source("R/fct_activityinfo.R")
 # Organization list
 # Country list
 
-countryListDF <- queryTable("cnkrge1m07falxuu7o",
-                 "Country" = "c8u26b8kxeqpy0k4",
-                 "Admin1" = "c3ns3zikxeqq4h95",
-                 "Admin1ISOCode" = "cl3sspjkxeqq8yq6",
-                 "countryISO" = "c1u8kphm4vqtemz2")
+countryListDF <- tryCatch(
+  queryTable("cnkrge1m07falxuu7o",
+             "Country" = "c8u26b8kxeqpy0k4",
+             "Admin1" = "c3ns3zikxeqq4h95",
+             "Admin1ISOCode" = "cl3sspjkxeqq8yq6",
+             "countryISO" = "c1u8kphm4vqtemz2"),
+  error = function(e) {
+    message("ERROR fetching country list: ", conditionMessage(e))
+    tibble(Country = character(0), Admin1 = character(0),
+           Admin1ISOCode = character(0), countryISO = character(0))
+  }
+)
 
 countryList <-  unique(countryListDF$Country)
 # Include All to get all data
